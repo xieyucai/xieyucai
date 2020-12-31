@@ -9,6 +9,13 @@ $(function () {
   })
 
   getuserinfo()
+
+  //点击重置按钮渲染数据
+  $('#btnreset').on('click', function (e) {
+    e.preventDefault()
+    //重新渲染
+    getuserinfo()
+  })
 })
 
 //定义一个函数获取用户信息
@@ -19,8 +26,9 @@ function getuserinfo() {
     url: '/my/userinfo',
     success: function (res) {
       if (res.status != 0) {
-        return '获取用户信息失败'
+        return layer.msg('获取用户信息失败')
       } else {
+        //layul里面的form.val()方法来渲染到表单里面，根据里面对应的name来对应渲染
         form.val('formUserInfo', res.data)
       }
     }
