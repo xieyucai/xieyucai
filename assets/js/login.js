@@ -30,11 +30,12 @@ $(function () {
       username: $('#form_reg [name=username]').val(),
       password: $('#form_reg [name=password]').val()
     }
-    $.post('http://ajax.frontend.itheima.net/api/reguser', data, function (res) {
+    $.post('/api/reguser', data, function (res) {
       if (res.status != 0) {
         return layer.msg('注册失败')
       } else {
         layer.msg('注册成功，请登录！')
+        $('#link_login').click()
       }
     })
   })
@@ -42,8 +43,7 @@ $(function () {
   //登录功能，监听提交事件
   $('#form_login').on('submit', function (e) {
     e.preventDefault()
-
-    $.post('http://ajax.frontend.itheima.net/api/login', $(this).serialize(), function (res) {
+    $.post('/api/login', $(this).serialize(), function (res) {
       if (res.status != 0) {
         return layer.msg('登录失败')
       } else {
