@@ -1,5 +1,7 @@
 $(function () {
   getList()
+
+  //点击退出注册点击事件
   $('#logout').on('click', function () {
     layui.layer.confirm('确认退出吗?', function (index) {
       //删除本地存储
@@ -10,8 +12,6 @@ $(function () {
       layer.close(index)
     })
   })
-
-  //点击退出注册点击事件
 })
 //定义一个函数获取数据
 function getList() {
@@ -27,6 +27,12 @@ function getList() {
         return '获取失败'
       }
       render(res.data)
+    },
+    complete: function (res) {
+      if (res.responseJSON != 0 && res.message != '获取用户信息成功') {
+        localStorage.removeItem('token')
+        location.href = '/login.html'
+      }
     }
   })
 }
