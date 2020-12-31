@@ -28,12 +28,12 @@ function getList() {
       }
       render(res.data)
     },
-    complete: function (res) {
+    /* complete: function (res) {
       if (res.responseJSON != 0 && res.message != '获取用户信息成功') {
         localStorage.removeItem('token')
         location.href = '/login.html'
       }
-    }
+    } */
   })
 }
 
