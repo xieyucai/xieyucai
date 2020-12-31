@@ -1,5 +1,17 @@
 $(function () {
   getList()
+  $('#logout').on('click', function () {
+    layui.layer.confirm('确认退出吗?', function (index) {
+      //删除本地存储
+      //跳转到登录页面
+      localStorage.removeItem('token')
+      location.href = '/login.html'
+
+      layer.close(index)
+    })
+  })
+
+  //点击退出注册点击事件
 })
 //定义一个函数获取数据
 function getList() {
