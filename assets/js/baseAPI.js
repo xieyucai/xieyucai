@@ -4,4 +4,10 @@
 $.ajaxPrefilter(function (options) {
   // 在发起真正的 Ajax 请求之前，统一拼接请求的根路径
   options.url = 'http://ajax.frontend.itheima.net' + options.url
+  //判断url 是否含/my/，如果携带，那么我们就设置 `options.headers
+  if (options.url.indexOf('/my/') !== -1) {
+    options.headers = {
+      Authorization: localStorage.getItem('token') || ''
+    }
+  }
 })
