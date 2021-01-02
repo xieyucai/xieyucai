@@ -16,6 +16,24 @@ $(function () {
     //重新渲染
     getuserinfo()
   })
+
+  //点击提交效果修改用户信息，对表单做监听事件
+  $('.layui-form').on('submit', function (e) {
+    e.preventDefault()
+    $.ajax({
+      method: 'POST',
+      url: '/my/userinfo',
+      data: $(this).serialize(),
+      success: function (res) {
+        if (res.status != 0) {
+          return layer.msg('修改用户信息失败')
+        } else {
+          layer.msg('修改用户信息成功')
+          window.parent.getuserinfo()
+        }
+      }
+    })
+  })
 })
 
 //定义一个函数获取用户信息
